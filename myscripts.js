@@ -80,7 +80,7 @@ async function getNextWord(wordArray){
         prob = probs[indexOfNextWord];
         console.log(prob);
         probs[indexOfNextWord] = probs[indexOfNextWord] / 2;
-    } while (prob < Math.random() / 5);
+    } while (prob < Math.random() / 10);
 
     return nextWord;
 }
