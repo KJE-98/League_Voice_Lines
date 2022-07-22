@@ -1,0 +1,214 @@
+{
+    "weightsManifest": [
+        {
+            "paths": [
+                "group1-shard1of2.bin",
+                "group1-shard2of2.bin"
+            ],
+            "weights": [
+                {
+                    "dtype": "float32",
+                    "shape": [
+                        100,
+                        12714
+                    ],
+                    "name": "dense/kernel"
+                },
+                {
+                    "dtype": "float32",
+                    "shape": [
+                        12714
+                    ],
+                    "name": "dense/bias"
+                },
+                {
+                    "dtype": "float32",
+                    "shape": [
+                        12714,
+                        10
+                    ],
+                    "name": "embedding/embeddings"
+                },
+                {
+                    "dtype": "float32",
+                    "shape": [
+                        10,
+                        400
+                    ],
+                    "name": "lstm/kernel"
+                },
+                {
+                    "dtype": "float32",
+                    "shape": [
+                        100,
+                        400
+                    ],
+                    "name": "lstm/recurrent_kernel"
+                },
+                {
+                    "dtype": "float32",
+                    "shape": [
+                        400
+                    ],
+                    "name": "lstm/bias"
+                }
+            ]
+        }
+    ],
+    "modelTopology": {
+        "training_config": {
+            "metrics": null,
+            "loss": "categorical_crossentropy",
+            "optimizer_config": {
+                "class_name": "Adam",
+                "config": {
+                    "beta_1": 0.8999999761581421,
+                    "beta_2": 0.9990000128746033,
+                    "name": "Adam",
+                    "decay": 0.0,
+                    "epsilon": 1e-07,
+                    "learning_rate": 0.0010000000474974513,
+                    "amsgrad": false
+                }
+            },
+            "weighted_metrics": null,
+            "loss_weights": null
+        },
+        "keras_version": "2.6.0",
+        "model_config": {
+            "class_name": "Sequential",
+            "config": {
+                "layers": [
+                    {
+                        "class_name": "InputLayer",
+                        "config": {
+                            "ragged": false,
+                            "dtype": "float32",
+                            "batch_input_shape": [
+                                null,
+                                47
+                            ],
+                            "name": "embedding_input",
+                            "sparse": false
+                        }
+                    },
+                    {
+                        "class_name": "Embedding",
+                        "config": {
+                            "embeddings_initializer": {
+                                "class_name": "RandomUniform",
+                                "config": {
+                                    "maxval": 0.05,
+                                    "seed": null,
+                                    "minval": -0.05
+                                }
+                            },
+                            "name": "embedding",
+                            "dtype": "float32",
+                            "output_dim": 10,
+                            "trainable": true,
+                            "embeddings_regularizer": null,
+                            "input_dim": 12714,
+                            "mask_zero": true,
+                            "embeddings_constraint": null,
+                            "batch_input_shape": [
+                                null,
+                                47
+                            ],
+                            "activity_regularizer": null,
+                            "input_length": 47
+                        }
+                    },
+                    {
+                        "class_name": "LSTM",
+                        "config": {
+                            "recurrent_activation": "sigmoid",
+                            "dtype": "float32",
+                            "trainable": true,
+                            "recurrent_initializer": {
+                                "class_name": "Orthogonal",
+                                "config": {
+                                    "seed": null,
+                                    "gain": 1.0
+                                }
+                            },
+                            "use_bias": true,
+                            "bias_regularizer": null,
+                            "return_state": false,
+                            "unroll": false,
+                            "bias_initializer": {
+                                "class_name": "Zeros",
+                                "config": {}
+                            },
+                            "units": 100,
+                            "unit_forget_bias": true,
+                            "activity_regularizer": null,
+                            "recurrent_dropout": 0.0,
+                            "kernel_initializer": {
+                                "class_name": "GlorotUniform",
+                                "config": {
+                                    "seed": null
+                                }
+                            },
+                            "kernel_constraint": null,
+                            "time_major": false,
+                            "activation": "tanh",
+                            "stateful": false,
+                            "dropout": 0.0,
+                            "recurrent_regularizer": null,
+                            "name": "lstm",
+                            "bias_constraint": null,
+                            "go_backwards": false,
+                            "implementation": 2,
+                            "kernel_regularizer": null,
+                            "return_sequences": false,
+                            "recurrent_constraint": null
+                        }
+                    },
+                    {
+                        "class_name": "Dropout",
+                        "config": {
+                            "name": "dropout",
+                            "dtype": "float32",
+                            "trainable": true,
+                            "rate": 0.1,
+                            "seed": null,
+                            "noise_shape": null
+                        }
+                    },
+                    {
+                        "class_name": "Dense",
+                        "config": {
+                            "kernel_initializer": {
+                                "class_name": "GlorotUniform",
+                                "config": {
+                                    "seed": null
+                                }
+                            },
+                            "name": "dense",
+                            "bias_regularizer": null,
+                            "bias_constraint": null,
+                            "dtype": "float32",
+                            "activation": "softmax",
+                            "trainable": true,
+                            "kernel_constraint": null,
+                            "kernel_regularizer": null,
+                            "bias_initializer": {
+                                "class_name": "Zeros",
+                                "config": {}
+                            },
+                            "units": 12714,
+                            "use_bias": true,
+                            "activity_regularizer": null
+                        }
+                    }
+                ],
+                "name": "sequential"
+            }
+        },
+        "backend": "tensorflow"
+    },
+    "generatedBy": "keras v2.6.0",
+    "convertedBy": "TensorFlow.js Converter v3.18.0",
+    "format": "layers-model"
+}
